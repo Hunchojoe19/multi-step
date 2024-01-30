@@ -1,20 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  step: 1,
+  userDetails: {
+    name: "",
+    email: "",
+    phone: "",
+  },
+  selectedPlan: "",
+  selectedAddOns: {
+    onlineService: false,
+    largerStorage: false,
+    customizableProfile: false,
+  },
+};
+
 const inputSlice = createSlice({
   name: "input",
-  initialState: {
-    usersData: [],
-    currentInput: 1,
-  },
+  initialState,
   reducers: {
-    addInput: (state, action) => {
-      state.usersData.push(action.payload);
+    setUserDetails: (state, action) => {
+      state.userDetails = action.payload;
     },
-    setCurrentInput: (state, action) => {
-      state.currentInput = action.payload;
+    setSelectedPlan: (state, action) => {
+      state.selectedPlan = action.payload;
+    },
+    setSelectedAddOns: (state, action) => {
+      state.selectedAddOns = action.payload;
+    },
+    setStep: (state, action) => {
+      state.step = action.payload;
     },
   },
 });
 
-export const { addInput, setCurrentInput } = inputSlice.actions;
+export const { setUserDetails, setSelectedPlan, setSelectedAddOns, setStep } =
+  inputSlice.actions;
 export default inputSlice.reducer;
