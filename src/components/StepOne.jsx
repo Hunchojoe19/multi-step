@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserDetails, setStep } from "../redux/inputSlice/inputSlice";
 
 const StepOne = () => {
-  const { userDetails, step } = useSelector((state) => state.input);
-  console.log(userDetails, "userDetails");
+  const { userDetails } = useSelector((state) => state.input);
+  // console.log(userDetails, "userDetails");
   const dispatch = useDispatch();
 
   const onClick = () => {

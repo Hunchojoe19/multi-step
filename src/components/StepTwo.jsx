@@ -7,31 +7,36 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setStep, setSelectedPlan } from "../redux/inputSlice/inputSlice";
+import {
+  setStep,
+  setSelectedPlan,
+  setSelectedTypes,
+  setPrice,
+} from "../redux/inputSlice/inputSlice";
 
 const StepTwo = () => {
-  const { step, selectedPlan } = useSelector((state) => state.input);
+  const { selectedPlan, selectedTypes } = useSelector((state) => state.input);
   const dispatch = useDispatch();
-  console.log(selectedPlan, "selectedPlan");
+  // console.log(selectedPlan, "selectedPlan");
+  // console.log(selectedTypes, "selectedTypes");
+
+  const handleChange = (e) => {
+    dispatch(setSelectedTypes(e.target.value));
+    dispatch(setPrice(selectedTypes));
+  };
 
   return (
-    <div>
-      <div className="flex flex-col justify-center items-center mt-10 md:flex-row md:justify-between md:items-center md:w-[450px] md:mx-auto md:gap-4">
+    <div className="container mx-auto flex flex-col items-center justify-center">
+      <div className="mt-8">
         <FormControl
           sx={{
             minWidth: 200,
-            // display: "flex",
-            // flexDirection: "column",
-            // gap: "10px",
-            // mt: 2,
-            // justifyItems: "center",
-            // alignItems: "center",
           }}
         >
           <InputLabel id="demo-simple-select-label">Plan</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId="selected-plan"
+            id="plan"
             value={selectedPlan}
             label="Plan"
             onChange={(e) => dispatch(setSelectedPlan(e.target.value))}
@@ -41,7 +46,27 @@ const StepTwo = () => {
           </Select>
         </FormControl>
       </div>
-      <div className="container mx-auto w-[450px] flex flex-col justify-between items-center md:flex">
+      <div className="mt-12">
+        <FormControl
+          sx={{
+            minWidth: 200,
+          }}
+        >
+          <InputLabel id="demo-simple-select-label">Select Type</InputLabel>
+          <Select
+            labelId="selected-types"
+            id="types"
+            value={selectedTypes}
+            label="Types"
+            onChange={handleChange}
+          >
+            <MenuItem value={"arcade"}>Arcade $9/month</MenuItem>
+            <MenuItem value={"advanced"}>Advanced $12/month</MenuItem>
+            <MenuItem value={"pro"}>Pro $15/month</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+      <div className="flex flex-col gap-2 mt-6 md:flex-row md:gap-8">
         <button
           className="text-center mt-6 p-2 w-[200px] bg-green-500 text-white text-sm rounded-lg"
           onClick={() => dispatch(setStep(1))}

@@ -20,6 +20,10 @@ const Holder = () => {
         return <StepTwo />;
       case 3:
         return <StepThree />;
+      case 4:
+        return <PreviewPage />;
+      default:
+        return <StepOne />;
     }
   };
 
