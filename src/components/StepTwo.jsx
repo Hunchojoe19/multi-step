@@ -74,7 +74,9 @@ const StepTwo = () => {
           Back
         </button>
         <button
-          className="text-center mt-6 p-2 w-[200px] bg-blue-500 text-white text-sm rounded-lg"
+          className="text-center mt-6 p-2 w-[200px] bg-blue-500 text-white text-sm rounded-lg disabled:opacity-25"
+          disabled={!selectedPlan || !selectedTypes}
+          type="submit"
           onClick={() => dispatch(setStep(3))}
         >
           Next

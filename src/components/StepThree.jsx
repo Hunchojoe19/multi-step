@@ -67,8 +67,13 @@ const StepThree = () => {
           Back
         </button>
         <button
-          className="text-center mt-6 p-2 w-[200px] bg-blue-500 text-white text-sm rounded-lg"
+          className="text-center mt-6 p-2 w-[200px] bg-blue-500 text-white text-sm rounded-lg disabled:opacity-25"
           onClick={() => dispatch(setStep(4))}
+          disabled={
+            !selectedAddOns.onlineService.selected &&
+            !selectedAddOns.largerStorage.selected &&
+            !selectedAddOns.customizableProfile.selected
+          }
         >
           Next
         </button>
